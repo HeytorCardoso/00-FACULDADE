@@ -22,7 +22,7 @@ class pilhad{
 		int qtd;
 	private:
 		pilhad();
-		˜pilhad();
+		//˜pilhad();
 		void adicionar();
 		void remover();
 		void imprimir();
@@ -33,19 +33,19 @@ pilhad::pilhad(){
 	topo = NULL;
 }
 
-pilhad::adicionar(){
+void pilhad::adicionar(){
 	int x = 0;
 	cout<<"\nDigite o valor desejado: ";
 	cin>>x;
-	no novo = new no();
-	novo.valor = x;
+	no *novo = new no();
+	(*novo).valor = x;
 	if(qtd == 0){
 		topo = novo;
 	}else{
-		no aux = new no();
+		no *aux = new no();
 		aux = topo;
 		topo = novo;
-		topo.ant = aux
+		(*topo).ant = aux;
 	}
 }
 
