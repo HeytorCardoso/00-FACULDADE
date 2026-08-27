@@ -13,14 +13,13 @@ class no{
 no::no(){
 	valor = 0;
 	ant=NULL;
-	prox=NULL;
 	}
 
 class pilhad{
-	public:
+	private:
 		no *topo;
 		int qtd;
-	private:
+	public:
 		pilhad();
 		//˜pilhad();
 		void adicionar();
@@ -42,27 +41,55 @@ void pilhad::adicionar(){
 	if(qtd == 0){
 		topo = novo;
 	}else{
+		(*novo).ant = topo;
+		topo = novo;
+	}
+	novo = NULL;
+	delete novo;
+	qtd++;
+}
+
+void pilhad::remover(){
+	if(qtd==0){
+		cout<<"\nA pilha esta vazia!";
+	}else{
 		no *aux = new no();
 		aux = topo;
-		topo = novo;
-		(*topo).ant = aux;
+		topo = (*topo).ant;
+		delete aux;
 	}
 }
 
 void pilhad::imprimir(){
-	no *aux2 = new no();
-	no *aux3 = new no();
-	aux2 = topo;
-	while((*aux2).ant != NULL){
-		cout<<"\n| "<<aux2;
-		aux3 = (*aux2).ant;
-		
+	if(qtd == 0){
+		cout<<"\nA pilha esta vazia!";
+	}else{
+		no *aux = new no();
+		aux = topo;
+		while(aux != NULL){
+			cout<<"\n| "<<((*aux).valor)<<" |\n";
+			aux = (*aux).ant;
+		}
+		delete aux;
 	}
 }
 
 int main(){
-	
-	cout<<"Teste!";
-	
+	pilhad p;
+	int opcao = 0;
+	do{
+		cout<<"\nEscolha uma opcao: \n1-Adicionar\n2-Remover\n3-Imprimir\n0-Sair\n";
+		cin>>opcao;
+
+		if(opcao == 1){
+			p.adicionar();
+		}
+		else if (opcao == 2){
+			p.remover();
+		}
+		else if (opcao == 3){
+			p.imprimir();
+		}
+	}while(opcao != 0);
 	return 0;
 }
