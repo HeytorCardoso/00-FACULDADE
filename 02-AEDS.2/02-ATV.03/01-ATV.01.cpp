@@ -49,6 +49,17 @@ void pilhad::adicionar(){
 	}
 }
 
+void pilhad::imprimir(){
+	no *aux2 = new no();
+	no *aux3 = new no();
+	aux2 = topo;
+	while((*aux2).ant != NULL){
+		cout<<"\n| "<<aux2;
+		aux3 = (*aux2).ant;
+		
+	}
+}
+
 int main(){
 	
 	cout<<"Teste!";
