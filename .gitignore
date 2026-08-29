@@ -1,5 +1,8 @@
-*.out
-*.exe
-*.o
-main
-teste
+*
+!*/
+!*.c
+!*.cpp
+!*.hpp
+!*.h
+!*.md
+!.gitignore
