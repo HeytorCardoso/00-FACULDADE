@@ -87,6 +87,7 @@ void pilhad::rm_meio(){
         no *aux3 = new no();
         aux = topo;
         int i = 0;
+        
         while(aux != NULL){
             if(i == (qtd/2)){
                 (*aux2).ant = aux3;
