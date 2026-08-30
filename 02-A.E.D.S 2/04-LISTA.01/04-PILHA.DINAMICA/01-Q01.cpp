@@ -25,6 +25,7 @@ class pilhad{
 		void adicionar();
 		void remover();
 		void imprimir();
+        void rm_meio();
 	};
 
 pilhad::pilhad(){
@@ -57,7 +58,7 @@ void pilhad::remover(){
 		aux = topo;
 		topo = (*topo).ant;
 		delete aux;
-		qtd--;
+        qtd--;
 	}
 }
 
@@ -75,11 +76,43 @@ void pilhad::imprimir(){
 	}
 }
 
+void pilhad::rm_meio(){
+    if(qtd == 0){
+        cout<<"\nPilha vazia!";
+    }else if(qtd == 1){
+        cout<<"\nA pilha nao possui meio!";
+    }else{
+        no *aux = new no();
+        no *aux2 = new no();
+        no *aux3 = new no();
+        aux = topo;
+        int i = 0;
+        while(aux != NULL){
+            if(i == (qtd/2)){
+                (*aux2).ant = aux3;
+                aux = NULL;
+                qtd--;
+                break;
+            }else{
+                if(i+1 == (qtd/2)){
+                    aux2 = aux;
+                }
+                aux = (*aux).ant;
+                i++;
+                if(i == (qtd/2)){
+                    aux3 = (*aux).ant;
+                }
+            }
+        }
+        delete aux;
+    }
+}
+
 int main(){
 	pilhad p;
 	int opcao = 0;
 	do{
-		cout<<"\nEscolha uma opcao: \n1-Adicionar\n2-Remover\n3-Imprimir\n0-Sair\n";
+		cout<<"\nEscolha uma opcao: \n1-Adicionar\n2-Remover\n3-Imprimir\n4-Remover Meio\n0-Sair\n";
 		cin>>opcao;
 
 		if(opcao == 1){
@@ -91,6 +124,9 @@ int main(){
 		else if (opcao == 3){
 			p.imprimir();
 		}
+        else if(opcao ==4){
+            p.rm_meio();
+        }
 	}while(opcao != 0);
 	return 0;
 }

@@ -57,7 +57,7 @@ void pilhad::remover(){
 		aux = topo;
 		topo = (*topo).ant;
 		delete aux;
-		qtd--;
+        qtd--;
 	}
 }
 

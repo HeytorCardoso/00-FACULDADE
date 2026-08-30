@@ -25,6 +25,7 @@ class pilhad{
 		void adicionar();
 		void remover();
 		void imprimir();
+        void rm_dupl();
 	};
 
 pilhad::pilhad(){
@@ -57,7 +58,7 @@ void pilhad::remover(){
 		aux = topo;
 		topo = (*topo).ant;
 		delete aux;
-		qtd--;
+        qtd--;
 	}
 }
 
@@ -75,11 +76,33 @@ void pilhad::imprimir(){
 	}
 }
 
+void pilhad::rm_dupl(){
+    no *aux = topo;
+    while(aux != NULL){
+        no *ant = aux;
+        no *aux2 = aux->ant;
+        while(aux2 != NULL){
+            if((*aux2).valor == (*aux).valor){
+                (*ant).ant = (*aux2).ant;
+                if((*aux2).ant != NULL)
+                    (*(*aux2).ant).prox = ant;
+                delete aux2;
+                aux2 = (*ant).ant;
+                qtd--;
+            }else{
+                ant = aux2;
+                aux2 = (*aux2).ant;
+            }
+        }
+        aux = (*aux).ant;
+    }
+}
+
 int main(){
 	pilhad p;
 	int opcao = 0;
 	do{
-		cout<<"\nEscolha uma opcao: \n1-Adicionar\n2-Remover\n3-Imprimir\n0-Sair\n";
+        cout<<"\n\nEscolha uma opcao: \n1-Adicionar\n2-Remover\n3-Imprimir\n4-Remover Duplicatas\n0-Sair\n";
 		cin>>opcao;
 
 		if(opcao == 1){
@@ -91,6 +114,9 @@ int main(){
 		else if (opcao == 3){
 			p.imprimir();
 		}
+        else if (opcao == 4){
+            p.rm_dupl();
+        }
 	}while(opcao != 0);
 	return 0;
 }
