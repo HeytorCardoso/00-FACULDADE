@@ -27,21 +27,24 @@ filae::filae(){
 void filae::adicionar(){
     if(qtd==5){
         cout<<"\nFila cheia!";
-        return;
-    }
-    int x=0;
-    cout<<"\nDigite o valor desejado: ";
-    cin>>x;
-    if(fim==0){
-        dados[fim] = x;
-        qtd++;
     }else{
-        dados[fim] = x;
-        qtd++;
-        fim++;
-        if(fim==5){
+        if(qtd==0){
+            ini = 0;
             fim = 0;
         }
+        int x=0;
+        cout<<"\nDigite o valor desejado: ";
+        cin>>x;
+        if(qtd==0){
+            dados[fim] = x;
+        }else{
+            fim++;
+            if(fim==5){
+                fim = 0;
+            }
+            dados[fim] = x;
+        }
+        qtd++;
     }
 }
 
@@ -86,7 +89,7 @@ int main(){
             filae.remover();
         }else if(selec==3){
             filae.imprimir();
-        }else{
+        }else if (selec!=0){
             cout<<"\nOpcao invalida!";
         }
     }while(selec != 0);

@@ -13,7 +13,7 @@ class filae{
     void adicionar();
     void remover();
     void imprimir();
-    void inverter_ordem();
+    void veri_orde();
 };
 
 filae::filae(){
@@ -78,23 +78,25 @@ void filae::imprimir(){
     }
 }
 
-void filae::inverter_ordem(){
+void filae::veri_orde(){
     if(qtd==0){
         cout<<"\nFila vazia!";
     }else if(qtd<2){
         cout<<"\nA fila nao possui elementos suficientes!";
     }else{
-        for(int i=0, in=ini, fi=fim; i<(qtd/2); i++, in++, fi--){
-            if(in==5){
-                in = 0;
+        int ordenada = 0;
+        for(int i=0, aux=ini, aux2=ini+1; i<qtd; i++, aux++, aux2++){
+            if(aux==5){
+                aux = 0;
             }
-            if(fi==5){
-                fi = 0;
-            }            
-            int aux = dados[in];
-            dados[in] = dados[fi];
-            dados[fi] = aux;
+            if(aux2==5){
+                aux2 = 0;
+            }
+            if(aux2>aux){
+                ordenada = 1;
+            }
         }
+        cout<<"\nA lista eh ordenada: "<<ordenada;
     }
 }
 
@@ -102,7 +104,7 @@ int main(){
     filae filae;
     int selec=0;
     do{
-        cout<<"\n\nSelecione uma das opcoes abaixo:\n1-Adicionar\n2-Remover\n3-Imprimir\n4-Inverter Ordem\n0-Sair\n";
+        cout<<"\n\nSelecione uma das opcoes abaixo:\n1-Adicionar\n2-Remover\n3-Imprimir\n4-Verificar Ordenacao\n0-Sair\n";
         cin>>selec;
         if(selec==1){
             filae.adicionar();
@@ -111,7 +113,7 @@ int main(){
         }else if(selec==3){
             filae.imprimir();
         }else if(selec==4){
-            filae.inverter_ordem();
+            filae.veri_orde();
         }else if (selec!=0){
             cout<<"\nOpcao invalida!";
         }

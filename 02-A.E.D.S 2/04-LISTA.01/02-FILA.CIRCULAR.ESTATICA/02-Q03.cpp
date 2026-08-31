@@ -13,7 +13,7 @@ class filae{
     void adicionar();
     void remover();
     void imprimir();
-    void inverter_ordem();
+    void cal_media();
 };
 
 filae::filae(){
@@ -78,23 +78,20 @@ void filae::imprimir(){
     }
 }
 
-void filae::inverter_ordem(){
+void filae::cal_media(){
     if(qtd==0){
         cout<<"\nFila vazia!";
-    }else if(qtd<2){
-        cout<<"\nA fila nao possui elementos suficientes!";
     }else{
-        for(int i=0, in=ini, fi=fim; i<(qtd/2); i++, in++, fi--){
-            if(in==5){
-                in = 0;
+        float media = 0;
+        float soma = 0;
+        for(int i=0, aux=ini; i<qtd; i++, aux++){
+            if(aux==5){
+                aux = 0;
             }
-            if(fi==5){
-                fi = 0;
-            }            
-            int aux = dados[in];
-            dados[in] = dados[fi];
-            dados[fi] = aux;
+            soma = soma + dados[aux];
         }
+        media = soma/qtd;
+        cout<<"\nA media eh: "<<media;
     }
 }
 
@@ -102,7 +99,7 @@ int main(){
     filae filae;
     int selec=0;
     do{
-        cout<<"\n\nSelecione uma das opcoes abaixo:\n1-Adicionar\n2-Remover\n3-Imprimir\n4-Inverter Ordem\n0-Sair\n";
+        cout<<"\n\nSelecione uma das opcoes abaixo:\n1-Adicionar\n2-Remover\n3-Imprimir\n4-Calcular Media\n0-Sair\n";
         cin>>selec;
         if(selec==1){
             filae.adicionar();
@@ -111,7 +108,7 @@ int main(){
         }else if(selec==3){
             filae.imprimir();
         }else if(selec==4){
-            filae.inverter_ordem();
+            filae.cal_media();
         }else if (selec!=0){
             cout<<"\nOpcao invalida!";
         }
