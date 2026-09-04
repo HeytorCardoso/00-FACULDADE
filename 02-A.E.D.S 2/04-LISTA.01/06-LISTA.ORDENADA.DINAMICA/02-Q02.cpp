@@ -26,7 +26,7 @@ class lista_ord{
         void adicionar();
         void remover();
         void imprimir();
-        void contar_intervalo();
+        void remover_central();
 };
 
 lista_ord::lista_ord(){
@@ -119,11 +119,41 @@ void lista_ord::imprimir(){
     }
 }
 
+void lista_ord::remover_central(){
+    if(qtd == 0){
+        cout<<"\nA lista esta vazia!";
+        return;
+    }
+
+    int meio = (qtd-1)/2;
+
+    no *aux = ini;
+    for(int i=0; i<meio; i++){
+        aux = (*aux).prox;
+    }
+
+    if((*aux).ant == NULL){
+        ini = (*aux).prox;
+    }else{
+        (*(*aux).ant).prox = (*aux).prox;
+    }
+
+    if((*aux).prox == NULL){
+        fim = (*aux).ant;
+    }else{
+        (*(*aux).prox).ant = (*aux).ant;
+    }
+
+    cout<<"\nNo central removido: "<<(*aux).valor;
+    delete aux;
+    qtd--;
+}
+
 int main(){
     lista_ord l;
     int opcao = -1;
     do{
-        cout<<"\nSelecione uma das opcoes:\n1-Adicionar\n2-Remover\n3-Imprimir\n0-Sair\n";
+        cout<<"\nSelecione uma das opcoes:\n1-Adicionar\n2-Remover\n3-Imprimir\n4-Remover Elemento Central\n0-Sair\n";
         cin>>opcao;
         if(opcao == 1){
             l.adicionar();
@@ -132,7 +162,7 @@ int main(){
         }else if(opcao == 3){
             l.imprimir();
         }else if(opcao == 4){
-
+            l.remover_central();
         }else if(opcao != 0){
             cout<<"Opcao invalida!";
         }

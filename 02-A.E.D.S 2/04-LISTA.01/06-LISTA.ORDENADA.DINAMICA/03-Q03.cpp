@@ -26,7 +26,7 @@ class lista_ord{
         void adicionar();
         void remover();
         void imprimir();
-        void contar_intervalo();
+        void somar();
 };
 
 lista_ord::lista_ord(){
@@ -119,11 +119,27 @@ void lista_ord::imprimir(){
     }
 }
 
+void lista_ord::somar(){
+    if(qtd == 0){
+        cout<<"\nA lista esta vazia!";
+        return;
+    }
+
+    int soma = 0;
+    no *aux = ini;
+    while(aux != NULL){
+        soma = soma + (*aux).valor;
+        aux = (*aux).prox;
+    }
+
+    cout<<"\nSoma de todos os elementos: "<<soma<<"\n";
+}
+
 int main(){
     lista_ord l;
     int opcao = -1;
     do{
-        cout<<"\nSelecione uma das opcoes:\n1-Adicionar\n2-Remover\n3-Imprimir\n0-Sair\n";
+        cout<<"\nSelecione uma das opcoes:\n1-Adicionar\n2-Remover\n3-Imprimir\n4-Remover Elemento Central\n0-Sair\n";
         cin>>opcao;
         if(opcao == 1){
             l.adicionar();
@@ -132,7 +148,7 @@ int main(){
         }else if(opcao == 3){
             l.imprimir();
         }else if(opcao == 4){
-
+            l.somar();
         }else if(opcao != 0){
             cout<<"Opcao invalida!";
         }

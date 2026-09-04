@@ -119,11 +119,35 @@ void lista_ord::imprimir(){
     }
 }
 
+void lista_ord::contar_intervalo(){
+    if(qtd == 0){
+        cout<<"\nA lista esta vazia!";
+        return;
+    }
+
+    int A = 0, B = 0;
+    cout<<"\nDigite o valor de A: ";
+    cin>>A;
+    cout<<"Digite o valor de B: ";
+    cin>>B;
+
+    int cont = 0;
+    no *aux = ini;
+    while(aux != NULL){
+        if((*aux).valor > A && (*aux).valor < B){
+            cont++;
+        }
+        aux = (*aux).prox;
+    }
+
+    cout<<"\nQuantidade de nos no intervalo ("<<A<<", "<<B<<"): "<<cont<<"\n";
+}
+
 int main(){
     lista_ord l;
     int opcao = -1;
     do{
-        cout<<"\nSelecione uma das opcoes:\n1-Adicionar\n2-Remover\n3-Imprimir\n0-Sair\n";
+        cout<<"\nSelecione uma das opcoes:\n1-Adicionar\n2-Remover\n3-Imprimir\n4-Contar Nos\n0-Sair\n";
         cin>>opcao;
         if(opcao == 1){
             l.adicionar();
@@ -132,7 +156,7 @@ int main(){
         }else if(opcao == 3){
             l.imprimir();
         }else if(opcao == 4){
-
+            l.contar_intervalo();
         }else if(opcao != 0){
             cout<<"Opcao invalida!";
         }
