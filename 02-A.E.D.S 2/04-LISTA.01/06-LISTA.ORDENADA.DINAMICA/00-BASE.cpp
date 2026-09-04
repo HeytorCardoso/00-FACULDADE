@@ -67,9 +67,6 @@ void lista_ord::adicionar(){
             aux = (*aux).prox;
         }
         if(ctrl == false){
-            cout<<"\nCheguei aqui!";
-            cout<<"\nINI: "<<(*ini).valor;
-            cout<<"\nFIM: "<<(*fim).valor;
             (*novo).prox = (*fim).prox;
             (*fim).prox = novo;
             (*novo).ant = fim;
