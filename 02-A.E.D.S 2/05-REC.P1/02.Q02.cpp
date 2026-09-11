@@ -22,6 +22,7 @@ class filad{
 
     public:
         filad();
+        ~filad();
         void adicionar();
         void remover();
         void imprimir();
@@ -32,6 +33,18 @@ filad::filad(){
     qtd = 0;
     ini = NULL;
     fim = NULL;
+}
+
+filad::~filad(){
+    no *aux = ini;
+    while(aux != NULL){
+        no *prox = aux->prox;
+        delete aux;
+        aux = prox;
+    }
+    ini = NULL;
+    fim = NULL;
+    qtd = 0;
 }
 
 void filad::adicionar(){
