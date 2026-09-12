@@ -23,6 +23,7 @@ class lista_ord{
         no *fim;
     public:
         lista_ord();
+        ~lista_ord();
         void adicionar();
         void remover();
         void imprimir();
@@ -33,6 +34,18 @@ lista_ord::lista_ord(){
     qtd = 0;
     ini = NULL;
     fim = NULL;
+}
+
+lista_ord::~lista_ord(){
+    no *aux = ini;
+    while(aux != NULL){
+        no *prox = (*aux).prox;
+        delete aux;
+        aux = prox;
+    }
+    ini = NULL;
+    fim = NULL;
+    qtd = 0;
 }
 
 void lista_ord::adicionar(){
@@ -120,14 +133,36 @@ void lista_ord::imprimir(){
 }
 
 void lista_ord::mov_men_mai(){
-    if(qtd<=1){
+    if(qtd<3){
         cout<<"\nNao ha valores suficientes na lista!";
+    }else if(qtd == 3){
+        no *aux = (*ini).prox;
+        (*aux).ant = NULL;
+        (*aux).prox = fim;
+        (*fim).prox = ini;
+        (*fim).ant = aux;
+        (*ini).prox = NULL;
+        (*ini).ant = fim;
+        ini = aux;
+        fim = (*fim).prox;
     }else{
         no *aux = ini;
-        for(int i=0; i<(qtd/2); i++){
+        for(int i=0; i<((qtd/2)-1); i++){
             aux = (*aux).prox;
-            
         }
+        no *aux2 = (*ini).prox;
+        (*aux2).ant = NULL;
+        no *aux3 = (*fim).ant;
+        (*aux3).prox = NULL;
+        no *aux4 = (*aux).prox;
+        (*ini).prox = aux4;
+        (*aux4).ant = ini;
+        (*ini).ant = fim;
+        (*aux).prox = fim;
+        (*fim).prox = ini;
+        (*fim).ant = aux;
+        ini = aux2;
+        fim = aux3;
     }
 }
 
