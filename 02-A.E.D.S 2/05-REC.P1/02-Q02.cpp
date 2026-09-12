@@ -38,7 +38,7 @@ filad::filad(){
 filad::~filad(){
     no *aux = ini;
     while(aux != NULL){
-        no *prox = aux->prox;
+        no *prox = (*aux).prox;
         delete aux;
         aux = prox;
     }
